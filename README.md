@@ -1,33 +1,17 @@
-# Influencer Empire — DARK (Telegram Mini App)
-Pełny, gotowy **MVP** w ciemnym motywie z symulacją reklam (rewarded).
+# Influencer Empire — DARK v2
+Wersja z poprawioną nawigacją (klik + touch), bez nakładania się elementów i z safe-area na iOS.
 
-## Co jest w środku
-- Kliker + źródła pasywne (YT, TikTok, IG, Twitch)
-- Sklep (Sprzęt/Promocje/Ekipa/Styl), misje dzienne, skrzynia co 4h
-- Symulacja reklam: modal z odliczaniem (5 s), hooki pod SDK
-- Ranking (placeholder), profil, zapis stanu (localStorage)
-- Kontrastowy, czytelny **dark UI**
+## Zmiany
+- **Nawigacja:** obsługa `click` i `touchstart`, wysoki `z-index` paska, przyciski `type="button"`.
+- **Router:** bezpieczny `show(view)` z walidacją i logami błędów.
+- **UI:** padding `env(safe-area-inset-bottom)` pod iOS, lepsza klikalność.
 
-## Jak uruchomić lokalnie
-1. Otwórz `index.html` w przeglądarce.
-2. Klikaj i testuj flow „reklam” (symulacja).
+## Jak uruchomić
+1. Otwórz `index.html` lokalnie lub hostuj pod HTTPS.
+2. Klikaj dolne zakładki: Start / Sklep / Eventy / Ranking / Profil.
 
-## Wdrożenie do Telegrama
-1. Wystaw pliki pod HTTPS (Vercel/Netlify/Cloudflare Pages itp.).
-2. W @BotFather ustaw domenę (`/setdomain`) i przycisk WebApp (`/setmenubutton`).
-3. Wejście: `https://t.me/<TwojBot>?startapp`
-
-## Integracja prawdziwych reklam
-Podmień funkcję `showAd(seconds, onDone)` w `app.js` na SDK (np. Monetag/AdinPlay). Punkty wywołań:
-- `#btnAdCollect` – zbiór 1h pasywu,
-- `#btnAdBoost` – BOOST x2 na 5 min,
-- `#btnAdChest` – skrzynia z cooldownem 4h,
-- zakładka **Promocje** w sklepie.
-
-## Backend rankingowy (opcjonalnie)
-- `POST /score` → `{ user_id, nick, score }`
-- `GET /ranking?period=weekly` → `[{nick, score}]`
-- `GET /me?user_id=...` → `{nick, score, rank}`
-Podpisuj `initData` z Telegrama (WebApp).
+## Gdzie dodać reklamy (SDK)
+- `showAd(...)` w `app.js` – podmień na Monetag/AdinPlay.
+- Hooki: `btnAdCollect`, `btnAdBoost`, `btnAdChest`, oraz zakładka **Promocje**.
 
 Powodzenia! 🚀

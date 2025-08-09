@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
-  <title>Influencer Empire — Dark</title>
+  <title>Influencer Empire — Dark v2</title>
   <meta name="theme-color" content="#0b0d11"/>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div id="app">
-    <header class="topbar">
-      <div class="avatar"><img src="./assets/avatar.svg" alt="avatar"/></div>
+    <header class="topbar" role="banner">
+      <div class="avatar" aria-hidden="true"><img src="./assets/avatar.svg" alt="" /></div>
       <div class="meta">
         <div class="nick" id="nickLabel">@gość</div>
         <div class="stats"><span id="levelLabel">Poziom 1</span> • <span id="badgeLabel">Odznaki: 0</span></div>
       </div>
-      <button id="settingsBtn" class="iconbtn" aria-label="Ustawienia">
-        <img src="./assets/gear.svg" alt="ustawienia"/>
+      <button id="settingsBtn" class="iconbtn" aria-label="Profil / ustawienia" type="button">
+        <img src="./assets/gear.svg" alt="" />
       </button>
     </header>
 
-    <main class="view" id="view-start">
+    <main class="view" id="view-start" role="region" aria-label="Start">
       <section class="card">
         <div class="row between">
           <h2>Followersi</h2>
@@ -28,7 +28,7 @@
         </div>
         <div class="followers" id="followersLabel">0</div>
         <div class="row">
-          <button id="btnClick" class="cta">KLIKNIJ, by zyskać followersów<br/><small id="perClickLabel">+1 za klik</small></button>
+          <button id="btnClick" class="cta" type="button">KLIKNIJ, by zyskać followersów<br/><small id="perClickLabel">+1 za klik</small></button>
         </div>
       </section>
 
@@ -37,30 +37,30 @@
         <div id="sourcesList" class="vlist"></div>
       </section>
 
-      <section class="sticky-ad">
-        <button id="btnAdCollect" class="rewarded">
+      <section class="sticky-ad" aria-live="polite">
+        <button id="btnAdCollect" class="rewarded" type="button">
           OBEJRZYJ REKLAMĘ → <span class="sub">Natychmiast zbierz 1h followersów</span>
         </button>
       </section>
     </main>
 
-    <main class="view hidden" id="view-shop">
-      <section class="tabs">
-        <button class="tab active" data-tab="sprzet">Sprzęt</button>
-        <button class="tab" data-tab="promocje">Promocje</button>
-        <button class="tab" data-tab="ekipa">Ekipa</button>
-        <button class="tab" data-tab="styl">Styl</button>
+    <main class="view hidden" id="view-shop" role="region" aria-label="Sklep">
+      <section class="tabs" role="tablist">
+        <button class="tab active" data-tab="sprzet" type="button" role="tab" aria-selected="true">Sprzęt</button>
+        <button class="tab" data-tab="promocje" type="button" role="tab">Promocje</button>
+        <button class="tab" data-tab="ekipa" type="button" role="tab">Ekipa</button>
+        <button class="tab" data-tab="styl" type="button" role="tab">Styl</button>
       </section>
       <section id="shopGrid" class="grid"></section>
 
       <section class="sticky-ad">
-        <button id="btnAdBoost" class="rewarded">
+        <button id="btnAdBoost" class="rewarded" type="button">
           REKLAMA → Podwój zyski na 5 min
         </button>
       </section>
     </main>
 
-    <main class="view hidden" id="view-events">
+    <main class="view hidden" id="view-events" role="region" aria-label="Eventy i misje">
       <section class="card">
         <h3>Misje dzienne</h3>
         <ul id="missionsList" class="missions"></ul>
@@ -68,12 +68,12 @@
       <section class="card">
         <h3>Codzienna skrzynia influencera</h3>
         <p>Obejrzyj reklamę, aby otworzyć skrzynię z nagrodą (followersi lub Gwiazdy).</p>
-        <button id="btnAdChest" class="rewarded">Otwórz skrzynię (reklama)</button>
+        <button id="btnAdChest" class="rewarded" type="button">Otwórz skrzynię (reklama)</button>
         <div id="chestCooldown" class="muted"></div>
       </section>
     </main>
 
-    <main class="view hidden" id="view-ranking">
+    <main class="view hidden" id="view-ranking" role="region" aria-label="Ranking">
       <section class="card">
         <h3>Ranking (tygodniowy)</h3>
         <ol id="rankingList" class="ranking"></ol>
@@ -81,34 +81,34 @@
       </section>
     </main>
 
-    <main class="view hidden" id="view-profile">
+    <main class="view hidden" id="view-profile" role="region" aria-label="Profil">
       <section class="card">
         <h3>Profil</h3>
         <label>Nick: <input id="nickInput" maxlength="24" placeholder="Twój nick"/></label>
-        <button id="saveNick" class="btn">Zapisz</button>
+        <button id="saveNick" class="btn" type="button">Zapisz</button>
         <div class="muted">Dane zapisywane lokalnie (localStorage).</div>
       </section>
       <section class="card">
         <h3>Ustawienia</h3>
-        <button id="resetBtn" class="btn danger">Zacznij od nowa (reset)</button>
+        <button id="resetBtn" class="btn danger" type="button">Zacznij od nowa (reset)</button>
       </section>
     </main>
 
-    <nav class="navbar">
-      <button class="nav active" data-view="start">Start</button>
-      <button class="nav" data-view="shop">Sklep</button>
-      <button class="nav" data-view="events">Eventy</button>
-      <button class="nav" data-view="ranking">Ranking</button>
-      <button class="nav" data-view="profile">Profil</button>
+    <nav class="navbar" role="navigation" aria-label="Główne menu">
+      <button class="nav active" data-view="start" type="button" aria-controls="view-start">Start</button>
+      <button class="nav" data-view="shop" type="button" aria-controls="view-shop">Sklep</button>
+      <button class="nav" data-view="events" type="button" aria-controls="view-events">Eventy</button>
+      <button class="nav" data-view="ranking" type="button" aria-controls="view-ranking">Ranking</button>
+      <button class="nav" data-view="profile" type="button" aria-controls="view-profile">Profil</button>
     </nav>
   </div>
 
-  <div id="modal" class="modal hidden">
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-body">
       <h3 id="modalTitle">Reklama</h3>
       <p id="modalText">Symulacja reklamy: odliczanie <span id="adCountdown">5</span>s…</p>
       <div class="row center">
-        <button id="modalClose" class="btn">Zamknij</button>
+        <button id="modalClose" class="btn" type="button">Zamknij</button>
       </div>
     </div>
   </div>
