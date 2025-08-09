@@ -1,9 +1,11 @@
+// Influencer Empire — Dark MVP with ad simulation
 (function(){
   const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
   if (tg) {
     tg.ready();
     tg.expand && tg.expand();
-    document.documentElement.style.setProperty('--accent', (tg.themeParams && tg.themeParams.button_color) || getComputedStyle(document.documentElement).getPropertyValue('--accent'));
+    const themeBtn = (tg.themeParams && tg.themeParams.button_color) || null;
+    if (themeBtn) document.documentElement.style.setProperty('--accent', themeBtn);
   }
 
   const state = {
@@ -43,7 +45,7 @@
     multipliers: { all:1, click:1, passive:1 }
   };
 
-  const SAVE_KEY = "influencer_empire_v1";
+  const SAVE_KEY = "influencer_empire_dark_v1";
   const el = s => document.querySelector(s);
   const els = s => document.querySelectorAll(s);
 
@@ -80,7 +82,6 @@
       }
     });
     const boostMult = state.boost.active ? state.boost.mult : 1;
-
     const baseClick = 1 + Math.log10(1 + state.total/100 + 1);
     state.perClick = Math.max(1, baseClick) * state.multipliers.click * state.multipliers.all * boostMult;
 
