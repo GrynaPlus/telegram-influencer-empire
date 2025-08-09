@@ -5,7 +5,7 @@
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 .topbar{display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:20}
-.avatar{width:56px;height:56px;border-radius:50%;overflow:hidden;border:1px solid var(--border);display:grid;place-items:center;background:var(--card)}
+.avatar{width:56px;height:56px;border-radius:50%;overflow:hidden;border:1px solid var(--border);display:grid;place-items:center;background:var(--card);cursor:pointer}
 .avatar img{width:40px;height:40px;opacity:.95;filter:brightness(1.2)}
 .meta{flex:1}
 .nick{font-weight:800;color:#fff}
@@ -41,7 +41,7 @@ h2,h3{color:#fff}
 
 .tabs{display:flex;gap:8px;margin-bottom:12px}
 .tab{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card);font-weight:800;color:#e2e8f0;cursor:pointer}
-.tab.active{outline:2px solid var(--accent);color:#111}
+.tab.active{outline:2px solid var(--accent);background:linear-gradient(#ffd84e,#f5c932);border-color:#a6881d;color:#111;font-weight:900}
 
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .card-shop{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:8px;box-shadow:0 6px 16px rgba(0,0,0,.3)}
@@ -50,6 +50,15 @@ h2,h3{color:#fff}
 .missions{padding-left:18px}
 .missions li{margin:6px 0;color:#e8eef5}
 .muted{color:var(--muted);font-size:.95rem}
+
+.collection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.cardtile{border:1px solid var(--border);background:#121720;border-radius:12px;padding:8px;text-align:center}
+.cardtile .rar{font-size:.8rem;color:#b3bdc7}
+.cardtile .nm{font-weight:800}
+
+.avatars-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:8px}
+.avatars-grid img{width:52px;height:52px;border-radius:50%;border:2px solid transparent;cursor:pointer}
+.avatars-grid img.active{border-color:#ffd84e}
 
 .ranking{margin:0 0 8px 16px;color:#e8eef5}
 .navbar{position:fixed;left:0;right:0;bottom:0;border-top:1px solid var(--border);background:#0e1116;height:64px;display:flex;backdrop-filter:saturate(140%) blur(6px);padding-bottom:var(--safe-bottom);z-index:1000}

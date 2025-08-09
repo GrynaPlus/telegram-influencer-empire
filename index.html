@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
-  <title>Influencer Empire — Dark v2</title>
+  <title>Influencer Empire — Dark v3</title>
   <meta name="theme-color" content="#0b0d11"/>
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://libtl.com/sdk.js" data-zone="9691940" data-sdk="show_9691940"></script>
 </head>
 <body>
   <div id="app">
     <header class="topbar" role="banner">
-      <div class="avatar" aria-hidden="true"><img src="./assets/avatar.svg" alt="" /></div>
+      <div class="avatar pickable" id="avatarBox" aria-label="Avatar">
+        <img id="avatarImg" src="./assets/avatar1.svg" alt="avatar"/>
+      </div>
       <div class="meta">
         <div class="nick" id="nickLabel">@gość</div>
         <div class="stats"><span id="levelLabel">Poziom 1</span> • <span id="badgeLabel">Odznaki: 0</span></div>
@@ -21,6 +24,17 @@
     </header>
 
     <main class="view" id="view-start" role="region" aria-label="Start">
+      <section class="trend card">
+        <div class="row between">
+          <div><strong>Trend:</strong> <span id="trendName">–</span></div>
+          <div class="muted">kończy się za <span id="trendTime">--:--</span></div>
+        </div>
+        <div class="row between">
+          <div class="muted">Kanał trenduje → zyski x2</div>
+          <button id="btnTrendExtend" class="btn primary" type="button">+10 min (reklama)</button>
+        </div>
+      </section>
+
       <section class="card">
         <div class="row between">
           <h2>Followersi</h2>
@@ -37,7 +51,7 @@
         <div id="sourcesList" class="vlist"></div>
       </section>
 
-      <section class="sticky-ad" aria-live="polite">
+      <section class="sticky-ad">
         <button id="btnAdCollect" class="rewarded" type="button">
           OBEJRZYJ REKLAMĘ → <span class="sub">Natychmiast zbierz 1h followersów</span>
         </button>
@@ -66,10 +80,16 @@
         <ul id="missionsList" class="missions"></ul>
       </section>
       <section class="card">
-        <h3>Codzienna skrzynia influencera</h3>
-        <p>Obejrzyj reklamę, aby otworzyć skrzynię z nagrodą (followersi lub Gwiazdy).</p>
+        <h3>Skrzynia kolekcjonerska</h3>
+        <p>Otwórz skrzynię (reklama). Zbierz karty sprzętu — z bonusami zestawów.</p>
         <button id="btnAdChest" class="rewarded" type="button">Otwórz skrzynię (reklama)</button>
         <div id="chestCooldown" class="muted"></div>
+      </section>
+      <section class="card">
+        <h3>AFK Booster</h3>
+        <p>Domyślny limit offline: 8h. Dodaj +1h (max 2×/dzień).</p>
+        <button id="btnAfkBoost" class="btn primary" type="button">+1h limit offline (reklama)</button>
+        <div class="muted">Dziś użyto: <span id="afkUsed">0</span>/2</div>
       </section>
     </main>
 
@@ -86,7 +106,20 @@
         <h3>Profil</h3>
         <label>Nick: <input id="nickInput" maxlength="24" placeholder="Twój nick"/></label>
         <button id="saveNick" class="btn" type="button">Zapisz</button>
-        <div class="muted">Dane zapisywane lokalnie (localStorage).</div>
+        <div class="muted">Wybierz avatar:</div>
+        <div class="avatars-grid" id="avatarsGrid"></div>
+      </section>
+      <section class="card">
+        <h3>Prestige („Status”)</h3>
+        <p>Reset progresu za stały bonus do zysków.</p>
+        <div class="muted">Poziom Statusu: <strong id="prestigeLvl">0</strong> • Premia: <strong id="prestigeMult">1.00×</strong></div>
+        <div class="muted">Koszt: osiągnij <span id="prestigeReq">1M</span> łącznych followersów.</div>
+        <button id="btnPrestige" class="btn danger" type="button">Zrób Prestige (reset + bonus)</button>
+      </section>
+      <section class="card">
+        <h3>Kolekcja kart</h3>
+        <div id="collectionStats" class="muted"></div>
+        <div id="collectionGrid" class="collection-grid"></div>
       </section>
       <section class="card">
         <h3>Ustawienia</h3>
